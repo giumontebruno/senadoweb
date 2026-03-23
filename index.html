@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senado Paraguay</title>
+
+<style>
+:root {
+  --black:#000;
+  --dark:#253335;
+  --gold:#D4AD10;
+  --light:#f7f7f5;
+  --border:#e5e5e5;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial, sans-serif;color:var(--black);}
+
+.container{max-width:1200px;margin:auto;padding:0 24px;}
+
+h1,h2{font-family:Georgia,serif;font-weight:500;}
+
+header{
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  height:80px;
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+}
+.logo img{height:50px;}
+
+nav a{
+  margin:0 16px;
+  font-size:14px;
+  text-decoration:none;
+  color:#000;
+}
+
+/* HERO */
+.hero{
+  height:70vh;
+  background:url('https://www.senado.gov.py/images/logos-iconos/sede-senado-2024-1.jpeg') center/cover;
+  display:flex;align-items:center;
+  position:relative;
+}
+.hero::after{
+  content:"";
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.5);
+}
+.hero-content{
+  position:relative;
+  color:#fff;
+}
+.hero h1{
+  font-size:60px;
+}
+.hero p{
+  margin:20px 0;
+}
+.btn{
+  padding:12px 22px;
+  border-radius:8px;
+  text-decoration:none;
+}
+.btn-primary{background:var(--gold);color:#000;}
+.btn-outline{border:1px solid #fff;color:#fff;}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+.card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+}
+
+.icon{
+  width:48px;height:48px;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+
+/* ICON SVG */
+.icon svg{
+  width:22px;height:22px;
+  stroke:var(--dark);
+  stroke-width:1.8;
+  fill:none;
+}
+
+/* NEWS */
+.news{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.news img{width:100%;height:200px;object-fit:cover;}
+
+section{padding:80px 0;}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header">
+  <div class="logo">
+    <img src="https://www.senado.gov.py/images/logos-iconos/logo_new.png">
+    <div>
+      <strong>Honorable Cámara de Senadores</strong><br>
+      <small>Poder Legislativo</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Senadores</a>
+    <a href="#">Sesiones</a>
+    <a href="#">Leyes</a>
+  </nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-content">
+  <h1>Honorable Cámara de Senadores</h1>
+  <p>Portal institucional del Poder Legislativo del Paraguay.</p>
+
+  <a href="#" class="btn btn-primary">Sesión en vivo</a>
+  <a href="#" class="btn btn-outline">Agenda</a>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2>Servicios institucionales</h2><br>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="16"/>
+        </svg>
+      </div>
+      <h3>Sesiones</h3>
+      <p>Agenda, transmisiones y registros.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="4" width="12" height="16"/>
+        </svg>
+      </div>
+      <h3>Legislación</h3>
+      <p>Consulta de leyes y proyectos.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="4"/>
+        </svg>
+      </div>
+      <h3>Senadores</h3>
+      <p>Autoridades y perfiles.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3l7 4v5c0 5-3 8-7 9"/>
+        </svg>
+      </div>
+      <h3>Transparencia</h3>
+      <p>Acceso a información pública.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <h2>Transparencia institucional</h2><br>
+
+  <div class="news">
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8"/>
+        </svg>
+      </div>
+      <h3>Presupuesto</h3>
+      <p>Información pública de recursos.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <rect x="6" y="4" width="12" height="16"/>
+        </svg>
+      </div>
+      <h3>Declaraciones</h3>
+      <p>Documentación oficial.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <svg viewBox="0 0 24 24">
+          <line x1="6" y1="8" x2="18" y2="8"/>
+          <line x1="6" y1="12" x2="18" y2="12"/>
+        </svg>
+      </div>
+      <h3>Informes</h3>
+      <p>Reportes y documentos.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</body>
+</html>
