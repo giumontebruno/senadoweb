@@ -1,237 +1,903 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Senado Paraguay</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honorable Cámara de Senadores</title>
 
-<style>
-:root {
-  --black:#000;
-  --dark:#253335;
-  --gold:#D4AD10;
-  --light:#f7f7f5;
-  --border:#e5e5e5;
-}
+  <style>
+    :root {
+      --black: #000000;
+      --dark: #253335;
+      --gold: #D4AD10;
+      --gray: #9D9D9C;
+      --light-gray: #DADADA;
+      --bg: #f7f7f5;
+      --white: #ffffff;
+      --border: #e8e8e8;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Arial, sans-serif;color:var(--black);}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.container{max-width:1200px;margin:auto;padding:0 24px;}
+    html {
+      scroll-behavior: smooth;
+    }
 
-h1,h2{font-family:Georgia,serif;font-weight:500;}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.5;
+    }
 
-header{
-  border-bottom:1px solid var(--border);
-  background:#fff;
-}
-.header{
-  display:flex;justify-content:space-between;align-items:center;
-  height:80px;
-}
-.logo{
-  display:flex;align-items:center;gap:12px;
-}
-.logo img{height:50px;}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-nav a{
-  margin:0 16px;
-  font-size:14px;
-  text-decoration:none;
-  color:#000;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* HERO */
-.hero{
-  height:70vh;
-  background:url('https://www.senado.gov.py/images/logos-iconos/sede-senado-2024-1.jpeg') center/cover;
-  display:flex;align-items:center;
-  position:relative;
-}
-.hero::after{
-  content:"";
-  position:absolute;inset:0;
-  background:rgba(0,0,0,0.5);
-}
-.hero-content{
-  position:relative;
-  color:#fff;
-}
-.hero h1{
-  font-size:60px;
-}
-.hero p{
-  margin:20px 0;
-}
-.btn{
-  padding:12px 22px;
-  border-radius:8px;
-  text-decoration:none;
-}
-.btn-primary{background:var(--gold);color:#000;}
-.btn-outline{border:1px solid #fff;color:#fff;}
+    .container {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+    }
 
-/* CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:24px;
-}
-.card{
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:24px;
-}
+    .serif {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
 
-.icon{
-  width:48px;height:48px;
-  border:1px solid var(--border);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;
-}
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
 
-/* ICON SVG */
-.icon svg{
-  width:22px;height:22px;
-  stroke:var(--dark);
-  stroke-width:1.8;
-  fill:none;
-}
+    .header-inner {
+      min-height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-/* NEWS */
-.news{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.news img{width:100%;height:200px;object-fit:cover;}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-section{padding:80px 0;}
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
 
-</style>
+    .brand-text strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    nav a {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    nav a:hover {
+      color: var(--dark);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.38) 42%, rgba(0,0,0,0.18) 100%),
+        url('https://www.senado.gov.py/images/logos-iconos/sede-senado-2024-1.jpeg') center/cover no-repeat;
+    }
+
+    .hero-content {
+      position: relative;
+      color: var(--white);
+      padding: 110px 0 90px;
+      max-width: 760px;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.34em;
+      color: var(--white);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      line-height: 1.02;
+      max-width: 680px;
+    }
+
+    .hero p {
+      margin-top: 24px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #f3f4f6;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 4px;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.75);
+      color: var(--white);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    section {
+      padding: 88px 0;
+    }
+
+    .section-kicker {
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 42px;
+      line-height: 1.08;
+      margin-bottom: 10px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: 12px;
+    }
+
+    .section-head {
+      margin-bottom: 34px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      line-height: 1.3;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #5f6b7a;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--dark);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .services .card small {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .news-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .news-body {
+      padding: 24px;
+    }
+
+    .news-date {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .news-body h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+
+    .agenda-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 34px;
+    }
+
+    .agenda-list {
+      margin-top: 26px;
+    }
+
+    .agenda-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .agenda-item:last-child {
+      border-bottom: none;
+    }
+
+    .agenda-date {
+      min-width: 58px;
+      height: 58px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .agenda-date span {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .agenda-date strong {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .agenda-info h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .agenda-info p {
+      color: #5f6b7a;
+      font-size: 14px;
+    }
+
+    .media-box {
+      position: relative;
+      min-height: 430px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .media-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.70), rgba(0,0,0,0.12), transparent);
+    }
+
+    .media-copy {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      color: var(--white);
+    }
+
+    .media-copy .section-kicker {
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .media-copy h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.1;
+      font-weight: 500;
+      max-width: 420px;
+    }
+
+    .institution {
+      background: #f4f4f1;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .institution-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .authority-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .authority-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .authority-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .authority-body {
+      padding: 18px;
+    }
+
+    .authority-body h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .authority-body p {
+      color: #5f6b7a;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .subscription {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .subscription-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .subscription p {
+      color: #5f6b7a;
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    .subscription-form {
+      display: flex;
+      gap: 12px;
+    }
+
+    .subscription-form input {
+      flex: 1;
+      height: 48px;
+      border: 1px solid var(--border);
+      padding: 0 14px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .subscription-form input:focus {
+      border-color: var(--gold);
+    }
+
+    footer {
+      background: #202020;
+      color: var(--white);
+      padding: 62px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .footer-title {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    footer p,
+    footer li {
+      color: #d6d6d6;
+      font-size: 14px;
+      line-height: 1.9;
+      list-style: none;
+    }
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-3,
+      .grid-2,
+      .institution-grid,
+      .subscription-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(1200px, calc(100% - 32px));
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      h2 {
+        font-size: 34px;
+      }
+
+      .grid-4,
+      .grid-3,
+      .authority-grid,
+      .subscription-form {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .subscription-form {
+        gap: 10px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<div class="container header">
-  <div class="logo">
-    <img src="https://www.senado.gov.py/images/logos-iconos/logo_new.png">
-    <div>
-      <strong>Honorable Cámara de Senadores</strong><br>
-      <small>Poder Legislativo</small>
-    </div>
-  </div>
-
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Senadores</a>
-    <a href="#">Sesiones</a>
-    <a href="#">Leyes</a>
-  </nav>
-</div>
-</header>
-
-<section class="hero">
-<div class="container hero-content">
-  <h1>Honorable Cámara de Senadores</h1>
-  <p>Portal institucional del Poder Legislativo del Paraguay.</p>
-
-  <a href="#" class="btn btn-primary">Sesión en vivo</a>
-  <a href="#" class="btn btn-outline">Agenda</a>
-</div>
-</section>
-
-<section>
-<div class="container">
-  <h2>Servicios institucionales</h2><br>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <rect x="3" y="4" width="18" height="16"/>
-        </svg>
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="https://www.senado.gov.py/images/logos-iconos/logo_new.png" alt="Logo Senado" />
+        <div class="brand-text">
+          <strong>Honorable Cámara de Senadores</strong>
+          <span>Poder Legislativo</span>
+        </div>
       </div>
-      <h3>Sesiones</h3>
-      <p>Agenda, transmisiones y registros.</p>
-    </div>
 
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <rect x="6" y="4" width="12" height="16"/>
-        </svg>
+      <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Senadores</a>
+        <a href="#">Sesiones</a>
+        <a href="#">Leyes</a>
+        <a href="#">Transparencia</a>
+        <a href="#">Prensa</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-kicker">República del Paraguay</div>
+        <h1 class="serif">Honorable Cámara de Senadores</h1>
+        <p>Poder Legislativo de la República del Paraguay.</p>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Sesión en vivo</a>
+          <a href="#" class="btn btn-outline">Agenda legislativa</a>
+        </div>
       </div>
-      <h3>Legislación</h3>
-      <p>Consulta de leyes y proyectos.</p>
     </div>
+  </section>
 
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="8" r="4"/>
-        </svg>
+  <section class="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Accesos principales</div>
+        <h2 class="serif">Servicios institucionales</h2>
       </div>
-      <h3>Senadores</h3>
-      <p>Autoridades y perfiles.</p>
-    </div>
 
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 3l7 4v5c0 5-3 8-7 9"/>
-        </svg>
+      <div class="grid-4">
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="16"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+            </svg>
+          </div>
+          <h3>Sesiones</h3>
+          <p>Agenda, orden del día, transmisiones y registros parlamentarios.</p>
+          <small>Ingresar</small>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <rect x="6" y="4" width="12" height="16"></rect>
+              <line x1="9" y1="9" x2="15" y2="9"></line>
+              <line x1="9" y1="13" x2="15" y2="13"></line>
+            </svg>
+          </div>
+          <h3>Legislación</h3>
+          <p>Consulta de proyectos, leyes vigentes y seguimiento parlamentario.</p>
+          <small>Ingresar</small>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M5 20c1.8-3.6 12.2-3.6 14 0"></path>
+            </svg>
+          </div>
+          <h3>Senadores</h3>
+          <p>Perfiles institucionales, bancadas, autoridades y comisiones.</p>
+          <small>Ingresar</small>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z"></path>
+            </svg>
+          </div>
+          <h3>Transparencia</h3>
+          <p>Documentos públicos, informes, presupuesto y acceso ciudadano.</p>
+          <small>Ingresar</small>
+        </article>
       </div>
-      <h3>Transparencia</h3>
-      <p>Acceso a información pública.</p>
     </div>
+  </section>
 
-  </div>
-</div>
-</section>
-
-<section>
-<div class="container">
-  <h2>Transparencia institucional</h2><br>
-
-  <div class="news">
-
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="8"/>
-        </svg>
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Actualidad</div>
+        <h2 class="serif">Últimas noticias</h2>
       </div>
-      <h3>Presupuesto</h3>
-      <p>Información pública de recursos.</p>
-    </div>
 
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <rect x="6" y="4" width="12" height="16"/>
-        </svg>
+      <div class="grid-3">
+        <article class="card news-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_09.53.17_800x400.jpeg" alt="Noticia 1">
+          <div class="news-body">
+            <div class="news-date">23 marzo 2026</div>
+            <h3>Sesión ordinaria aborda proyectos prioritarios del periodo legislativo</h3>
+            <p>Síntesis breve de la novedad para facilitar una lectura rápida y ordenada.</p>
+          </div>
+        </article>
+
+        <article class="card news-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_13.00.11_3_800x400.jpeg" alt="Noticia 2">
+          <div class="news-body">
+            <div class="news-date">22 marzo 2026</div>
+            <h3>Comisiones dictaminan propuestas vinculadas a transparencia institucional</h3>
+            <p>Síntesis breve de la novedad para facilitar una lectura rápida y ordenada.</p>
+          </div>
+        </article>
+
+        <article class="card news-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_10.29.13_AM_800x400.jpeg" alt="Noticia 3">
+          <div class="news-body">
+            <div class="news-date">21 marzo 2026</div>
+            <h3>Mesa directiva presenta agenda de trabajo y calendario de sesiones</h3>
+            <p>Síntesis breve de la novedad para facilitar una lectura rápida y ordenada.</p>
+          </div>
+        </article>
       </div>
-      <h3>Declaraciones</h3>
-      <p>Documentación oficial.</p>
     </div>
+  </section>
 
-    <div class="card">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <line x1="6" y1="8" x2="18" y2="8"/>
-          <line x1="6" y1="12" x2="18" y2="12"/>
-        </svg>
+  <section>
+    <div class="container grid-2">
+      <div class="agenda-box">
+        <div class="section-kicker">Agenda legislativa</div>
+        <h2 class="serif">Próximas actividades</h2>
+
+        <div class="agenda-list">
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <span>MAR</span>
+              <strong>24</strong>
+            </div>
+            <div class="agenda-info">
+              <h3>Sesión ordinaria</h3>
+              <p>09:00 · Sala de Sesiones</p>
+            </div>
+          </div>
+
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <span>MAR</span>
+              <strong>25</strong>
+            </div>
+            <div class="agenda-info">
+              <h3>Comisión de Hacienda</h3>
+              <p>10:30 · Sala 2</p>
+            </div>
+          </div>
+
+          <div class="agenda-item">
+            <div class="agenda-date">
+              <span>MAR</span>
+              <strong>26</strong>
+            </div>
+            <div class="agenda-info">
+              <h3>Audiencia pública</h3>
+              <p>11:00 · Salón Acosta Ñu</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <h3>Informes</h3>
-      <p>Reportes y documentos.</p>
-    </div>
 
-  </div>
-</div>
-</section>
+      <div class="media-box">
+        <img src="https://www.senado.gov.py/images/banners/HCS-1600X400_0003_Capa-3.png" alt="Multimedia">
+        <div class="media-overlay"></div>
+        <div class="media-copy">
+          <div class="section-kicker">Multimedia</div>
+          <h3>Actividad parlamentaria y cobertura institucional</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="institution">
+    <div class="container institution-grid">
+      <div>
+        <div class="section-kicker">Institución</div>
+        <h2 class="serif">Un portal más claro, moderno y alineado a la imagen institucional</h2>
+      </div>
+
+      <div class="authority-grid">
+        <article class="authority-card">
+          <img src="https://www.senado.gov.py/images/banners/HCS-1600X400_0003_Capa-3.png" alt="Presidencia">
+          <div class="authority-body">
+            <h3>Presidencia</h3>
+            <p>Acceso a perfiles, información de gestión y contenido institucional relacionado.</p>
+          </div>
+        </article>
+
+        <article class="authority-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_09.53.17_800x400.jpeg" alt="Vicepresidencia Primera">
+          <div class="authority-body">
+            <h3>Vicepresidencia Primera</h3>
+            <p>Acceso a perfiles, información de gestión y contenido institucional relacionado.</p>
+          </div>
+        </article>
+
+        <article class="authority-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_13.00.11_3_800x400.jpeg" alt="Vicepresidencia Segunda">
+          <div class="authority-body">
+            <h3>Vicepresidencia Segunda</h3>
+            <p>Acceso a perfiles, información de gestión y contenido institucional relacionado.</p>
+          </div>
+        </article>
+
+        <article class="authority-card">
+          <img src="https://www.senado.gov.py/images/Noticias/2026/thumbs/WhatsApp_Image_2026-03-19_at_10.29.13_AM_800x400.jpeg" alt="Bloques Legislativos">
+          <div class="authority-body">
+            <h3>Bloques Legislativos</h3>
+            <p>Acceso a perfiles, información de gestión y contenido institucional relacionado.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Gestión pública</div>
+        <h2 class="serif">Transparencia institucional</h2>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M12 7v10"></path>
+              <path d="M8 10h5"></path>
+              <path d="M8 14h5"></path>
+            </svg>
+          </div>
+          <h3>Presupuesto</h3>
+          <p>Bloque pensado para reforzar acceso ciudadano a información pública de forma ordenada.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <rect x="6" y="4" width="12" height="16"></rect>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="9" y1="12" x2="15" y2="12"></line>
+            </svg>
+          </div>
+          <h3>Declaraciones</h3>
+          <p>Bloque pensado para reforzar acceso ciudadano a información pública de forma ordenada.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <line x1="6" y1="8" x2="18" y2="8"></line>
+              <line x1="6" y1="12" x2="18" y2="12"></line>
+              <line x1="6" y1="16" x2="18" y2="16"></line>
+            </svg>
+          </div>
+          <h3>Informes y documentos</h3>
+          <p>Bloque pensado para reforzar acceso ciudadano a información pública de forma ordenada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="subscription">
+    <div class="container subscription-grid">
+      <div>
+        <div class="section-kicker">Boletín oficial</div>
+        <h2 class="serif">Recibe información del Senado</h2>
+        <p>Espacio editable para boletín, alertas de sesiones, agenda y publicaciones oficiales.</p>
+      </div>
+
+      <form class="subscription-form">
+        <input type="email" placeholder="Correo electrónico">
+        <button type="submit" class="btn btn-primary">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-title">Institución</div>
+        <p>Honorable Cámara de Senadores<br>Poder Legislativo de la República del Paraguay.</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Contacto</div>
+        <p>Av. República y Río Aquidabán<br>Asunción, Paraguay</p>
+      </div>
+
+      <div>
+        <div class="footer-title">Enlaces</div>
+        <ul>
+          <li>Sesiones</li>
+          <li>Prensa</li>
+          <li>Transparencia</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
